@@ -94,7 +94,7 @@ const pants = [
 
 function Collection({ title, items }) {
   return (
-    <div className="md:px-[50px] py-10">
+    <div className="px-[20px] md:px-[50px] py-10">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-[24px] font-semibold text-[#183864]">{title}</h2>
         <Link className="text-[20px] text-[#883992] font-semibold">
@@ -104,7 +104,7 @@ function Collection({ title, items }) {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-7">
         {items.map((item, index) => (
           <div key={index}>
-            <div className="h-[350px] bg-[#EBEBEB] rounded-lg relative">
+            <div className="h-auto md:h-[350px] bg-[#EBEBEB] rounded-lg relative">
               <img
                 src={item.img}
                 alt=""
@@ -129,7 +129,7 @@ function Collection({ title, items }) {
 function Store() {
   return (
     <>
-      <div className="md:px-[50px] py-10">
+      <div className="px-[20px] md:px-[50px] py-10">
         <img src={store} className="w-full h-auto" alt="" />
       </div>
       {/* <div className="md:px-[50px] py-20 grid grid-cols-1 md:grid-cols-4 gap-7">

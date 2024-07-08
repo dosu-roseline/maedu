@@ -13,11 +13,11 @@ import instagram from '../assets/instagram.svg';
 
 function Footer() {
   return (
-    <footer className="px-[50px] bg-[#FAFAFA] py-8">
+    <footer className="px-[20px] md:px-[50px] bg-[#FAFAFA] py-8">
       <div className="flex items-end justify-end pb-8">
         <img src={logo} alt="" />
       </div>
-      <div className="grid grid-cols-7">
+      <div className="grid grid-cols-1 md:grid-cols-7">
         <div className="">
           <h1 className="pb-3 md:text-[20px]">Company</h1>
           <ul className="">
@@ -80,7 +80,7 @@ function Footer() {
             </li>
           </ul>
         </div>
-        <div className="col-span-3 pt-8">
+        <div className="md:col-span-3 pt-8">
           <h1 className="pb-3 md:text-[20px]">New to Maedu?</h1>
           <p className="text-[14px] pb-3">
             Subscribe to our newsletter to get latest update on our offers.
@@ -89,11 +89,11 @@ function Footer() {
             <input
               type="text"
               placeholder="Enter your email"
-              className="w-[70%] rounded-[8px] bg-[#E3E3E3] placeholder:text-[#898384] px-[20px] py-[10px]"
+              className="w-[60%] md:w-[70%] rounded-[8px] bg-[#E3E3E3] placeholder:text-[#898384] px-[20px] py-[10px]"
             />
             <button
               type="submit"
-              className="w-[30%] bg-[#5E2764] text-white px-[20px] py-[10px] rounded-[8px]"
+              className="w-[40%] md:w-[30%] bg-[#5E2764] text-white px-[20px] py-[10px] rounded-[8px]"
             >
               Subcribe
             </button>
@@ -101,12 +101,12 @@ function Footer() {
         </div>
       </div>
 
-      <div className="flex items-center gap-20 pt-16 pb-8">
+      <div className="flex flex-col md:flex-row items-center gap-20 pt-16 pb-8">
         <div className="">
           <h1 className="pb-3 md:text-[20px]">
             Payment Options And Delivery Partners
           </h1>
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-4 md:gap-8">
             <img src={mastercard} alt="" />
             <img src={max} alt="" />
             <img src={visa} alt="" />
@@ -116,7 +116,7 @@ function Footer() {
         </div>
         <div className="">
           <h1 className="pb-3 md:text-[20px]">Follow Us</h1>
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-4 md:gap-8">
             <img src={youtube} alt="" />
             <img src={facebook} alt="" />
             <img src={instagram} alt="" />

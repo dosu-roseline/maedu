@@ -5,38 +5,7 @@ import col1 from '../assets/col1.svg';
 import col2 from '../assets/col2.svg';
 import cartWhite from '../assets/cartWhite.svg';
 import rating from '../assets/rating.png';
-import ts1 from '../assets/ts1.png';
-import ts2 from '../assets/ts2.png';
-import ts3 from '../assets/ts3.png';
-import ts4 from '../assets/ts4.png';
 import items from '../data/Items';
-
-const topSelling = [
-  {
-    img: ts1,
-    description: 'Brown Leather Shirt',
-    color: 'Brown',
-    price: '400',
-  },
-  {
-    img: ts2,
-    description: 'Afriture Vintage',
-    color: 'Black',
-    price: '99',
-  },
-  {
-    img: ts3,
-    description: 'Pant',
-    color: 'Gray',
-    price: '75',
-  },
-  {
-    img: ts4,
-    description: 'Pant',
-    color: 'Fiesta Jean',
-    price: '120',
-  },
-];
 
 export default function ItemDetails() {
   const navigate = useNavigate();
@@ -57,13 +26,15 @@ export default function ItemDetails() {
         />
       </div>
 
-      <div className="text-[#183864] pt-8 pl-10 pr-16 flex-1">
+      <div className="text-[#183864] pt-8 lg:pl-10 lg:pr-16 flex-1">
         <p className="text-[24px]">{item.description}</p>
         <p className="font-semibold">${item.price}</p>
-        <div className="flex flex-col md:flex-row items-center gap-1">
+        <div className="flex items-center gap-1">
           <p className="">3.9</p>
           <img src={rating} alt="" />
-          <p className="pl-10 text-[#712F79]">See all 260 reviews</p>
+          <p className="lg:pl-10 text-[#712F79] text-[14px]">
+            See all 260 reviews
+          </p>
         </div>
 
         <div className="py-8">
@@ -74,7 +45,7 @@ export default function ItemDetails() {
           </div>
         </div>
 
-        <div className="space-x-2">
+        <div className="md:space-x-2">
           {sizes.map((size) => (
             <button
               key={size}
@@ -93,7 +64,7 @@ export default function ItemDetails() {
         </div>
 
         <Link
-          to="/cart"
+          to="/store/cart"
           className="mt-8 px-4 py-3 bg-[#712F79] text-white rounded flex items-center w-full justify-center gap-2"
         >
           <img src={cartWhite} alt="" className="h-[20px]" /> Add to Cart

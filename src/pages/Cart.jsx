@@ -9,9 +9,11 @@ import CartCard from '../components/CartCard';
 function Cart() {
   return (
     <div className="px-[20px] md:px-[50px] py-10">
-      <h1 className="pb-5 md:text-[30px] text-center">Shopping Cart</h1>
-      <div className="flex flex-col md:flex-row items-start gap-20">
-        <div className="divide-y divide-[#CCCBCB] border-y border-[#CCCBCB] md:w-[55%]">
+      <h1 className="pb-5 text-[25px] md:text-[30px] text-center">
+        Shopping Cart
+      </h1>
+      <div className="flex flex-col md:flex-row items-start gap-10 md:gap-20">
+        <div className="divide-y divide-[#CCCBCB] md:border-y border-[#CCCBCB] md:w-[55%]">
           {data.map((cart, i) => (
             <CartCard
               key={i}
@@ -46,7 +48,7 @@ function Cart() {
           </div>
           <div className="">
             <Link
-              to="/checkout"
+              to="/store/checkout"
               className="mt-8 px-4 py-3 bg-[#712F79] text-white rounded flex items-center w-full justify-center gap-2"
             >
               <img src={checkout} alt="" className="h-[20px]" /> Checkout

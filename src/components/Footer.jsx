@@ -15,7 +15,7 @@ function Footer() {
   return (
     <footer className="px-[20px] md:px-[50px] bg-[#FAFAFA] py-8">
       <div className="flex items-end md:justify-end pb-4 md:pb-8">
-        <img src={logo} alt="" className="h-[40px] md:h-auto" />
+        <img src={logo} alt="" className="h-[50px] md:h-auto" />
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-y-5">
         <div className="col-span-2 md:col-span-4 lg:col-span-3 md:order-5 md:pt-8">

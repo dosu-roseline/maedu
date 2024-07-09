@@ -7,10 +7,10 @@ import cart3 from '../assets/ts4.png';
 function Checkout() {
   return (
     <div className="px-[20px] md:px-[50px] py-14">
-      <h1 className="pb-5 md:text-[30px] text-center">Checkout</h1>
-      <div className="flex flex-col md:flex-row gap-10">
+      <h1 className="pb-5 text-[25px] md:text-[30px] text-center">Checkout</h1>
+      <div className="flex flex-col-reverse md:flex-row gap-10">
         <form action="" className="w-full md:w-[50%] flex flex-col gap-2">
-          <h1 className="pb-2 md:text-[18px] font-semibold">
+          <h1 className="pb-2 text-[18px] font-semibold">
             Contact information
           </h1>
           <div className="pb-5">
@@ -28,8 +28,8 @@ function Checkout() {
             <input type="text" name="" id="" className="form-input" />
           </div>
 
-          <div className="grid grid-cols-3 gap-5 pb-5">
-            <div className="col-span-2">
+          <div className="grid md:grid-cols-3 gap-5 pb-5">
+            <div className="md:col-span-2">
               <label htmlFor="" className="form-label">
                 Expiration date (MM/YY)
               </label>
@@ -53,7 +53,7 @@ function Checkout() {
             <input type="text" name="" id="" className="form-input" />
           </div>
 
-          <div className="grid grid-cols-3 gap-5 pb-5">
+          <div className="grid md:grid-cols-3 gap-5 pb-5">
             <div className="">
               <label htmlFor="" className="form-label">
                 City
@@ -86,10 +86,10 @@ function Checkout() {
             </label>
           </div>
 
-          <div className="flex items-center gap-10">
+          <div className="flex flex-col items-center md:gap-10">
             <Link
               to="/checkout"
-              className="w-[50%] mt-8 px-4 py-3 text-center bg-[#712F79] text-white rounded"
+              className="w-full md:w-[50%] mt-8 px-4 py-3 text-center bg-[#712F79] text-white rounded"
             >
               Pay Now
             </Link>

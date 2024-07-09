@@ -12,14 +12,14 @@ function Collection({ title, items }) {
           View All
         </Link>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-7">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7">
         {items.map((item) => (
           <div key={item.id}>
-            <div className="h-[350px] bg-[#EBEBEB] rounded-lg relative">
+            <div className="h-[350px] md:h-[260px] bg-[#EBEBEB] rounded-lg relative">
               <img
                 src={item.img}
                 alt=""
-                className="h-full w-full object-cover"
+                className="h-full w-full object-contain"
               />
               <Link to={`/store/${item.id}`} className="">
                 <img src={heart} alt="" className="absolute top-2 right-2" />

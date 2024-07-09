@@ -6,10 +6,10 @@ import cart3 from '../assets/ts4.png';
 
 function Checkout() {
   return (
-    <div className="px-[50px] py-14">
+    <div className="px-[20px] md:px-[50px] py-14">
       <h1 className="pb-5 md:text-[30px] text-center">Checkout</h1>
-      <div className="flex gap-10">
-        <form action="" className="w-[50%] flex flex-col gap-2">
+      <div className="flex flex-col md:flex-row gap-10">
+        <form action="" className="w-full md:w-[50%] flex flex-col gap-2">
           <h1 className="pb-2 md:text-[18px] font-semibold">
             Contact information
           </h1>
@@ -104,7 +104,7 @@ function Checkout() {
             </p>
           </div>
         </form>
-        <div className="w-[50%] bg-[#712F79] rounded-[8px] px-10 py-10 text-white">
+        <div className="w-full md:w-[50%] bg-[#712F79] rounded-[8px] px-10 py-10 text-white">
           <h1 className="pb-2 md:text-[18px] font-semibold">Amount due</h1>
           <h1 className="pb-2 md:text-[25px] font-semibold">$328</h1>
           <div className="divide-y divide-[#CCCBCB]">

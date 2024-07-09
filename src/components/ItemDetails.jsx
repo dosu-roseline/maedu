@@ -9,6 +9,7 @@ import ts1 from '../assets/ts1.png';
 import ts2 from '../assets/ts2.png';
 import ts3 from '../assets/ts3.png';
 import ts4 from '../assets/ts4.png';
+import items from '../data/Items';
 
 const topSelling = [
   {
@@ -40,14 +41,14 @@ const topSelling = [
 export default function ItemDetails() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const item = topSelling[id];
+  const item = items[id];
 
   const [selectedSize, setSelectedSize] = useState('M');
 
   const sizes = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
   return (
-    <div className="md:px-[50px] py-10 flex items-start">
+    <div className="px-[20px] md:px-[50px] py-10 flex flex-col md:flex-row items-start">
       <div className="bg-[#EBEBEB] rounded-lg px-10 flex-1">
         <img
           src={item.img}
@@ -59,7 +60,7 @@ export default function ItemDetails() {
       <div className="text-[#183864] pt-8 pl-10 pr-16 flex-1">
         <p className="text-[24px]">{item.description}</p>
         <p className="font-semibold">${item.price}</p>
-        <div className="flex items-center gap-1">
+        <div className="flex flex-col md:flex-row items-center gap-1">
           <p className="">3.9</p>
           <img src={rating} alt="" />
           <p className="pl-10 text-[#712F79]">See all 260 reviews</p>

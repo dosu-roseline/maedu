@@ -8,10 +8,10 @@ import CartCard from '../components/CartCard';
 
 function Cart() {
   return (
-    <div className="px-[50px] py-10">
+    <div className="px-[20px] md:px-[50px] py-10">
       <h1 className="pb-5 md:text-[30px] text-center">Shopping Cart</h1>
-      <div className="flex items-start gap-20">
-        <div className="divide-y divide-[#CCCBCB] border-y border-[#CCCBCB] w-[55%]">
+      <div className="flex flex-col md:flex-row items-start gap-20">
+        <div className="divide-y divide-[#CCCBCB] border-y border-[#CCCBCB] md:w-[55%]">
           {data.map((cart, i) => (
             <CartCard
               key={i}
@@ -24,7 +24,7 @@ function Cart() {
             />
           ))}
         </div>
-        <div className="w-[45%] bg-[#EBEBEB] px-5 py-14 rounded-lg">
+        <div className="w-full md:w-[45%] bg-[#EBEBEB] px-5 py-14 rounded-lg">
           <h1 className="text-[22px]">Order summary</h1>
           <div className=" divide-y divide-[#CCCBCB] flex flex-col space-y-5">
             <div className="flex items-center justify-between pt-5">

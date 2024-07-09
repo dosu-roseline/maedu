@@ -7,16 +7,18 @@ import ItemDetails from './components/ItemDetails';
 import Footer from './components/Footer';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/store" element={<Store />}></Route>
-        <Route path="/item/:id" element={<ItemDetails />} />
+        <Route path="/store/:id" element={<ItemDetails />} />
         <Route path="/cart" element={<Cart />}></Route>
         <Route path="/checkout" element={<Checkout />}></Route>
       </Routes>

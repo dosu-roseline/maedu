@@ -11,11 +11,11 @@ import checkOut2 from '../assets/checkOut2.svg';
 function About() {
   return (
     <div className="">
-      <section className="section-about text-white px-28 py-10">
-        <h1 className="text-[60px] font-[Lora] leading-tight">
+      <section className="section-about text-white px-10 md:px-28 py-10">
+        <h1 className="text-[30px] md:text-[60px] font-[Lora] leading-tight">
           Maedu: Crafted Confidence for the Modern Man
         </h1>
-        <p className="pt-8 text-[25px] font-semibold">
+        <p className="pt-8 md:text-[25px] font-semibold">
           Maedu is more than just clothing; it&apos;s an attitude. We create
           statement pieces for the man who appreciates exceptional style and
           wants to feel confident in his own skin.
@@ -24,7 +24,7 @@ function About() {
         <div className="flex justify-center pb-5">
           <Link
             to="/store"
-            className="mt-8 px-4 py-3 bg-[#712F79] text-white rounded flex items-center w-[50%] justify-center gap-2"
+            className="mt-8 px-4 py-3 bg-[#712F79] text-white rounded flex items-center md:w-[50%] justify-center gap-2"
           >
             Explore Our Latest Collection{' '}
             <img src={arrowWhite} alt="" className="h-[20px]" />
@@ -50,9 +50,10 @@ function About() {
           </div>
         </div>
       </section>
-      <div className="px-20 py-20">
+
+      <div className="px-10 md:px-20 py-20">
         <h1 className="md:text-[25px] font-semibold pb-5">Our values</h1>
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="flex items-start gap-5">
             <img src={elevated} alt="" className="h-6" />
             <p className="">
@@ -87,11 +88,11 @@ function About() {
         </div>
       </div>
 
-      <div className="bg-[#712F79] text-white px-[50px] py-20 flex items-center gap-10">
-        <div className="w-[50%]">
+      <div className="bg-[#712F79] text-white px-[50px] py-20 flex flex-col md:flex-row items-center gap-10">
+        <div className="w-full md:w-[50%]">
           <img src={about2} alt="" className="w-full rounded-lg" />
         </div>
-        <div className="w-[50%]">
+        <div className="w-full md:w-[50%]">
           <h1 className="text-[30px] pb-5">Join our team</h1>
           <p className="pb-5">
             Maedu isn&apos;t just a clothing brand; it&apos;s a movement for the

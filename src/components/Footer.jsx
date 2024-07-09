@@ -14,10 +14,29 @@ import instagram from '../assets/instagram.svg';
 function Footer() {
   return (
     <footer className="px-[20px] md:px-[50px] bg-[#FAFAFA] py-8">
-      <div className="flex items-end justify-end pb-8">
-        <img src={logo} alt="" />
+      <div className="flex items-end md:justify-end pb-4 md:pb-8">
+        <img src={logo} alt="" className="h-[40px] md:h-auto" />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-7">
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-y-5">
+        <div className="col-span-2 md:col-span-4 lg:col-span-3 md:order-5 md:pt-8">
+          <h1 className="pb-3 md:text-[20px]">New to Maedu?</h1>
+          <p className="text-[14px] pb-3">
+            Subscribe to our newsletter to get latest update on our offers.
+          </p>
+          <div className="flex items-center gap-4">
+            <input
+              type="text"
+              placeholder="Enter your email"
+              className="w-[65%] text-[14px] md:text-[16px] md:w-[70%] rounded-[8px] bg-[#E3E3E3] placeholder:text-[#898384] px-[20px] py-[10px]"
+            />
+            <button
+              type="submit"
+              className="w-[35%] text-[14px] md:text-[16px] md:w-[30%] bg-[#5E2764] text-white px-[20px] py-[10px] rounded-[8px]"
+            >
+              Subscribe
+            </button>
+          </div>
+        </div>
         <div className="">
           <h1 className="pb-3 md:text-[20px]">Company</h1>
           <ul className="">
@@ -80,34 +99,15 @@ function Footer() {
             </li>
           </ul>
         </div>
-        <div className="md:col-span-3 pt-8">
-          <h1 className="pb-3 md:text-[20px]">New to Maedu?</h1>
-          <p className="text-[14px] pb-3">
-            Subscribe to our newsletter to get latest update on our offers.
-          </p>
-          <div className="flex items-center gap-4">
-            <input
-              type="text"
-              placeholder="Enter your email"
-              className="w-[60%] md:w-[70%] rounded-[8px] bg-[#E3E3E3] placeholder:text-[#898384] px-[20px] py-[10px]"
-            />
-            <button
-              type="submit"
-              className="w-[40%] md:w-[30%] bg-[#5E2764] text-white px-[20px] py-[10px] rounded-[8px]"
-            >
-              Subcribe
-            </button>
-          </div>
-        </div>
       </div>
 
-      <div className="flex flex-col md:flex-row items-center gap-20 pt-16 pb-8">
+      <div className="flex flex-col md:flex-row md:items-center gap-10 md:gap-20 pt-8 md:pt-16 pb-4 md:pb-8">
         <div className="">
           <h1 className="pb-3 md:text-[20px]">
             Payment Options And Delivery Partners
           </h1>
           <div className="flex items-center gap-4 md:gap-8">
-            <img src={mastercard} alt="" />
+            <img src={mastercard} alt="" className="h-7 md:h-auto" />
             <img src={max} alt="" />
             <img src={visa} alt="" />
             <img src={fedEx} alt="" />
@@ -116,11 +116,11 @@ function Footer() {
         </div>
         <div className="">
           <h1 className="pb-3 md:text-[20px]">Follow Us</h1>
-          <div className="flex items-center gap-4 md:gap-8">
-            <img src={youtube} alt="" />
-            <img src={facebook} alt="" />
-            <img src={instagram} alt="" />
-            <img src={twitter} alt="" />
+          <div className="flex items-center gap-7 md:gap-8">
+            <img src={youtube} alt="" className="h-5 md:h-auto" />
+            <img src={facebook} alt="" className="h-5 md:h-auto" />
+            <img src={instagram} alt="" className="h-5 md:h-auto" />
+            <img src={twitter} alt="" className="h-5 md:h-auto" />
           </div>
         </div>
       </div>

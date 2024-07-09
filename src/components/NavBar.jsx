@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoMdClose } from 'react-icons/io';
 import logo from '../assets/logo.png';
@@ -9,6 +9,7 @@ import profile from '../assets/profile.svg';
 
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -18,6 +19,8 @@ function NavBar() {
     setIsMenuOpen(false);
   };
 
+  const isHomePage = location.pathname === '/';
+
   return (
     <header className="bg-[#160632] px-[20px] md:px-[50px] py-4 sticky top-0 z-50">
       <div className="flex items-center justify-between md:border-b-[0.5px] border-[#CBCAD3] md:pb-4">
@@ -25,11 +28,14 @@ function NavBar() {
           <img src={logo} alt="Maedu Logo" className="h-[30px]" />
         </Link>
 
-        <input
-          type="text"
-          placeholder="Search"
-          className="hidden md:block bg-[#CBCAD3] py-2 px-5 w-[35%] rounded-lg outline-none placeholder:text-white"
-        />
+        {!isHomePage && (
+          <input
+            type="text"
+            placeholder="Search"
+            className="hidden md:block bg-[#CBCAD3] py-2 px-5 w-[35%] rounded-lg outline-none placeholder:text-white"
+          />
+        )}
+
         <div className="items-center space-x-4 hidden md:flex">
           <Link to="/store/cart">
             <img src={cart} alt="Cart Icon" className="h-[20px]" />
@@ -78,7 +84,7 @@ function NavBar() {
                 <NavLink
                   to={link.src}
                   onClick={closeMenu}
-                  className="font-semibold text-[23px]"
+                  className="font-semibold text-[20px]"
                 >
                   {link.label}
                 </NavLink>

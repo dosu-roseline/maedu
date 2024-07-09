@@ -57,7 +57,7 @@ p {
   width: 100%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .active {
     color: #712f79;
     border-bottom: none;

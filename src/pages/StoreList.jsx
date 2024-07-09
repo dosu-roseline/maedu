@@ -1,24 +1,18 @@
+import products from '../data/products';
 import { Link } from 'react-router-dom';
 import heart from '../assets/heart.svg';
 
-function Collection({ title, items }) {
+function StoreList() {
   return (
-    <div className="px-[20px] md:px-[50px] py-10">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-[18px] md:text-[24px] font-semibold text-[#183864]">
-          {title}
-        </h2>
-        <Link
-          to="/store/list"
-          className="text-[16px] md:text-[20px] text-[#883992] font-semibold"
-        >
-          View All
-        </Link>
-      </div>
-      <div className="grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4 md:gap-7">
-        {items.map((item) => (
+    <div className="py-10 md:py-16 px-[20px] md:px-[50px]">
+      <h2 className="text-[18px] md:text-[24px] pb-8 text-center font-semibold text-[#183864]">
+        Top Selling
+      </h2>
+
+      <div className="grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4 md:gap-7">
+        {products.map((item) => (
           <div key={item.id}>
-            <div className="h-[180px] md:h-[350px] bg-[#EBEBEB] rounded-lg relative">
+            <div className="h-[180px] sm:h-[270px] md:h-[350px] bg-[#EBEBEB] rounded-lg relative">
               <img
                 src={item.img}
                 alt=""
@@ -46,4 +40,4 @@ function Collection({ title, items }) {
   );
 }
 
-export default Collection;
+export default StoreList;

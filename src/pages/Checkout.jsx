@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import shopLine from '../assets/shopLine.svg';
 import cart1 from '../assets/ts1.png';
 import cart2 from '../assets/ts4.png';
-import cart3 from '../assets/ts4.png';
+import cart3 from '../assets/pr6.png';
 
 function Checkout() {
   return (

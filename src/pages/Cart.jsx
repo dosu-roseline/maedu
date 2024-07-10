@@ -3,7 +3,7 @@ import checkout from '../assets/checkout.svg';
 import shopLine from '../assets/shopLine.svg';
 import cart1 from '../assets/ts1.png';
 import cart2 from '../assets/ts4.png';
-import cart3 from '../assets/ts4.png';
+import cart3 from '../assets/pr6.png';
 import CartCard from '../components/CartCard';
 
 function Cart() {

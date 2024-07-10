@@ -31,7 +31,7 @@ function About() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 gap-y-8 md:grid-cols-4 pt-8">
+        <div className="hidden md:grid grid-cols-2 gap-y-8 md:grid-cols-4 pt-8">
           <div className="border-l-[3px] border-[#FAFAFA] pl-3">
             <h1 className="text-[25px] md:text-[35px]">2012</h1>
             <p className="text-[14px] md:text-[16px]">Maedu was founded</p>
@@ -51,9 +51,36 @@ function About() {
         </div>
       </section>
 
-      <div className="px-8 md:px-20 py-20">
+      <div className="md:hidden px-[20px] grid grid-cols-2 gap-x-2 gap-y-8 pt-8">
+        <div className="border-l-[1.86px] border-[#183864] pl-1.5">
+          <h1 className="text-[25px] md:text-[35px]">2012</h1>
+          <p className="text-[11px] font-extrabold md:text-[16px]">
+            Maedu was founded
+          </p>
+        </div>
+        <div className="border-l-[1.86px] border-[#183864] pl-1.5">
+          <h1 className="text-[25px] md:text-[35px]">200+</h1>
+          <p className="text-[11px] font-extrabold md:text-[16px]">
+            Fashion Designers
+          </p>
+        </div>
+        <div className="border-l-[1.86px] border-[#183864] pl-1.5">
+          <h1 className="text-[25px] md:text-[35px]">520k</h1>
+          <p className="text-[11px] font-extrabold md:text-[16px]">
+            Customers Worldwide
+          </p>
+        </div>
+        <div className="border-l-[1.86px] border-[#183864] pl-1.5">
+          <h1 className="text-[25px] md:text-[35px]">600M</h1>
+          <p className="text-[11px] font-extrabold md:text-[16px]">
+            Delivery Worldwide
+          </p>
+        </div>
+      </div>
+
+      <div className="px-[20px] md:px-20 py-20">
         <h1 className="text-[25px] font-semibold pb-5">Our values</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pr-8 md:pr-0">
           <div className="flex items-start gap-5">
             <img src={elevated} alt="" className="h-6" />
             <p className="">

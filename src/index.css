@@ -58,6 +58,16 @@ p {
 }
 
 @media (max-width: 767px) {
+  .section-about {
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.35) 0%,
+        rgba(0, 0, 0, 0.35) 100%
+      ),
+      url('./assets/about1.jpeg') lightgray 0px -72.2px / 100% 113.604% no-repeat;
+    width: 100%;
+  }
+
   .active {
     color: #712f79;
     border-bottom: none;

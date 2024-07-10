@@ -18,7 +18,7 @@ function StoreList() {
                 alt=""
                 className="h-full w-full object-contain md:object-cover"
               />
-              <Link to={`/store/items/${item.id}`} className="">
+              <Link to={`/store/products/${item.id}`} className="">
                 <img
                   src={heart}
                   alt=""

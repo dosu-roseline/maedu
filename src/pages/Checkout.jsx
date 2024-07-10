@@ -28,8 +28,8 @@ function Checkout() {
             <input type="text" name="" id="" className="form-input" />
           </div>
 
-          <div className="grid md:grid-cols-3 gap-5 pb-5">
-            <div className="md:col-span-2">
+          <div className="grid grid-cols-3 gap-5 pb-5">
+            <div className="col-span-2">
               <label htmlFor="" className="form-label">
                 Expiration date (MM/YY)
               </label>
@@ -53,7 +53,7 @@ function Checkout() {
             <input type="text" name="" id="" className="form-input" />
           </div>
 
-          <div className="grid md:grid-cols-3 gap-5 pb-5">
+          <div className="grid grid-cols-3 gap-5 pb-5">
             <div className="">
               <label htmlFor="" className="form-label">
                 City
@@ -86,19 +86,20 @@ function Checkout() {
             </label>
           </div>
 
-          <div className="flex flex-col items-center md:gap-10">
+          <div className="flex mt-8 justify-between md:justify-normal items-center gap-2 md:gap-10">
             <Link
               to="/checkout"
-              className="w-full md:w-[50%] mt-8 px-4 py-3 text-center bg-[#712F79] text-white rounded"
+              className="w-[40%] md:w-[50%] px-4 py-3 text-center bg-[#712F79] text-white rounded"
             >
               Pay Now
             </Link>
 
-            <p className="pt-5 flex items-center gap-2 font-semibold justify-center">
+            <p className="flex items-center gap-2 font-semibold justify-center">
               Or
               <Link to="/store">
-                <span className="text-[#712F79] flex items-center gap-1">
-                  Continue Shopping <img src={shopLine} alt="" />
+                <span className="text-[#712F79] text-[14px] md:text-[16px] flex items-center gap-1">
+                  Continue Shopping{' '}
+                  <img src={shopLine} alt="" className="h-2 md:h-auto" />
                 </span>
               </Link>
             </p>

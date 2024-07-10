@@ -38,9 +38,9 @@ export default function ItemDetails() {
         />
       </div>
 
-      <div className="text-[#183864] pt-8 lg:pl-10 lg:pr-16 flex-1">
+      <div className="text-[#183864] w-full pt-8 lg:pl-10 lg:pr-16 md:flex-1">
         <div className="flex gap-x-10 items-start">
-          <div className="">
+          <div className="w-[55%] md:w-auto">
             <p className="text-[24px]">{item.description}</p>
             <p className="font-semibold">${item.price}</p>
           </div>

@@ -11,7 +11,7 @@ function StoreList() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
 
   useEffect(() => {
@@ -43,7 +43,7 @@ function StoreList() {
   );
   const totalPages = Math.ceil(products.length / itemsPerPage);
 
-  console.log(products);
+  console.log(selectedProducts);
 
   if (loading) {
     return (

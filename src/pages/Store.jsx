@@ -17,7 +17,7 @@ function Store() {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          `api/products?organization_id=${orgzId}&reverse_sort=false&size=16&Appid=${apiId}&Apikey=${apiKey}`
+          `https://timbu-get-all-products.reavdev.workers.dev/?organization_id=${orgzId}&reverse_sort=false&size=16&Appid=${apiId}&Apikey=${apiKey}`
         );
         const products = response.data.items;
 

@@ -11,6 +11,8 @@ function StoreList() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -19,8 +21,6 @@ function StoreList() {
           `https://timbu-get-all-products.reavdev.workers.dev/?organization_id=${orgzId}&reverse_sort=false&size=16&Appid=${apiId}&Apikey=${apiKey}`
         );
         const products = response.data.items;
-        console.log(products, 'here');
-
         setProducts(products);
         setLoading(false);
       } catch (err) {
@@ -31,6 +31,17 @@ function StoreList() {
 
     fetchProducts();
   }, []);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const selectedProducts = products.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+  const totalPages = Math.ceil(products.length / itemsPerPage);
 
   if (loading) {
     return (
@@ -51,12 +62,11 @@ function StoreList() {
       </h2>
 
       <div className="grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4 md:gap-7">
-        {products.map((item) => (
+        {selectedProducts.map((item) => (
           <div key={item.id}>
             <div className="h-[180px] sm:h-[270px] md:h-[350px] bg-[#EBEBEB] rounded-lg relative">
               <img
                 src={`https://api.timbu.cloud/images/${item.photos[0].url}`}
-                // src={item.img}
                 alt=""
                 className="h-full w-full object-contain md:object-cover"
               />
@@ -77,6 +87,36 @@ function StoreList() {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="flex justify-center mt-16">
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="px-4 py-2 mx-1 bg-gray-300 rounded-md"
+        >
+          Previous
+        </button>
+        {[...Array(totalPages)].map((_, index) => (
+          <button
+            key={index}
+            onClick={() => handlePageChange(index + 1)}
+            className={`px-4 py-2 mx-1 ${
+              index + 1 === currentPage
+                ? 'bg-[#160632] text-white'
+                : 'bg-gray-300'
+            }`}
+          >
+            {index + 1}
+          </button>
+        ))}
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className="px-4 py-2 mx-1 bg-gray-300 rounded-md"
+        >
+          Next
+        </button>
       </div>
     </div>
   );

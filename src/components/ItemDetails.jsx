@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import back from '../assets/back.svg';
@@ -6,6 +6,7 @@ import col1 from '../assets/col1.svg';
 import col2 from '../assets/col2.svg';
 import cartWhite from '../assets/cartWhite.svg';
 import rating from '../assets/rating.png';
+import { CartContext } from '../context/CartContext';
 
 const apiKey = 'ab73904f1bbf4ff7b98490b36188b29720240712130313022852';
 const apiId = 'U7JQ5YL02DO9POE';
@@ -14,12 +15,12 @@ const orgzId = '2d77a1f80e424633b8737bc04e828804';
 export default function ItemDetails() {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { addToCart } = useContext(CartContext);
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedSize, setSelectedSize] = useState('M');
   const sizes = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL'];
   const [error, setError] = useState(null);
-  console.log(id, 'id');
 
   useEffect(() => {
     const fetchItemDetails = async () => {
@@ -42,6 +43,12 @@ export default function ItemDetails() {
 
     fetchItemDetails();
   }, [id]);
+
+  const handleAddToCart = () => {
+    const itemWithSize = { ...item, selectedSize };
+    addToCart(itemWithSize);
+    navigate('/store/cart');
+  };
 
   if (loading) {
     return (
@@ -122,12 +129,12 @@ export default function ItemDetails() {
             </button>
           ))}
         </div>
-        <Link
-          to="/store/cart"
+        <button
+          onClick={handleAddToCart}
           className="mt-8 px-4 py-3 bg-[#712F79] text-white rounded flex items-center w-full justify-center gap-2"
         >
           <img src={cartWhite} alt="" className="h-[20px]" /> Add to Cart
-        </Link>
+        </button>
       </div>
 
       <button className="hidden md:block" onClick={() => navigate(-1)}>

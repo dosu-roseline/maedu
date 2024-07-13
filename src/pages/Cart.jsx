@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { CartContext } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 import checkout from '../assets/checkout.svg';
 import shopLine from '../assets/shopLine.svg';
@@ -7,6 +9,22 @@ import cart3 from '../assets/pr6.png';
 import CartCard from '../components/CartCard';
 
 function Cart() {
+  const { cart, removeFromCart } = useContext(CartContext);
+
+  if (cart.length === 0) {
+    return (
+      <div className="py-10 px-[20px] md:px-[50px]">
+        <h2 className="text-[24px] text-center font-semibold">
+          Your Cart is Empty
+        </h2>
+        <Link to="/store">
+          <span className="text-[#712F79] flex justify-center mt-5 items-center gap-1">
+            Start Shopping <img src={shopLine} alt="" />
+          </span>
+        </Link>
+      </div>
+    );
+  }
   return (
     <div className="px-[20px] md:px-[50px] py-10">
       <h1 className="pb-5 text-[25px] md:text-[30px] text-center">
@@ -14,14 +32,11 @@ function Cart() {
       </h1>
       <div className="flex flex-col md:flex-row items-start gap-10 md:gap-20">
         <div className="divide-y divide-[#CCCBCB] md:border-y border-[#CCCBCB] md:w-[55%]">
-          {data.map((cart, i) => (
+          {cart.map((cart, i) => (
             <CartCard
               key={i}
-              label={cart.label}
-              size={cart.size}
-              item={cart.item}
-              color={cart.color}
-              price={cart.price}
+              item={cart}
+              removeFromCart={removeFromCart}
               bg="bg-[#EBEBEB]"
             />
           ))}

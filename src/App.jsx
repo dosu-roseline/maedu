@@ -9,23 +9,28 @@ import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import ScrollToTop from './components/ScrollToTop';
 import StoreList from './pages/StoreList';
+import { CartProvider } from './context/CartContext';
+import Success from './pages/Success';
 
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/about" element={<About />}></Route>
-        <Route path="/store" element={<Store />}></Route>
-        <Route path="/store/:source/:id" element={<ItemDetails />} />
-        <Route path="/store/list" element={<StoreList />} />
-        <Route path="/store/cart" element={<Cart />}></Route>
-        <Route path="/store/checkout" element={<Checkout />}></Route>
-      </Routes>
-      <Footer />
-    </Router>
+    <CartProvider>
+      <Router>
+        <ScrollToTop />
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/about" element={<About />}></Route>
+          <Route path="/store" element={<Store />}></Route>
+          <Route path="/store/:source/:id" element={<ItemDetails />} />
+          <Route path="/store/list" element={<StoreList />} />
+          <Route path="/store/cart" element={<Cart />}></Route>
+          <Route path="/store/checkout" element={<Checkout />}></Route>
+          <Route path="/success" element={<Success />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </CartProvider>
   );
 }
 

@@ -1,24 +1,58 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import back from '../assets/back.svg';
 import col1 from '../assets/col1.svg';
 import col2 from '../assets/col2.svg';
 import cartWhite from '../assets/cartWhite.svg';
 import rating from '../assets/rating.png';
-import items from '../data/Items';
-import products from '../data/products';
+
+const apiKey = 'ab73904f1bbf4ff7b98490b36188b29720240712130313022852';
+const apiId = 'U7JQ5YL02DO9POE';
+const orgzId = '2d77a1f80e424633b8737bc04e828804';
 
 export default function ItemDetails() {
   const navigate = useNavigate();
-  const { source, id } = useParams();
-  const data = source === 'products' ? products : items;
-  const item = data.find((item) => item.id === parseInt(id));
-
+  const { id } = useParams();
+  const [item, setItem] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [selectedSize, setSelectedSize] = useState('M');
   const sizes = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL'];
+  const [error, setError] = useState(null);
+  console.log(id, 'id');
 
-  if (!item) {
-    return <div>Item not found</div>;
+  useEffect(() => {
+    const fetchItemDetails = async () => {
+      try {
+        const response = await axios.get(
+          `https://timbu-get-single-product.reavdev.workers.dev/${id}?organization_id=${orgzId}&Appid=${apiId}&Apikey=${apiKey}`
+          // `api/products/${id}?organization_id=${orgzId}&Appid=${apiId}&Apikey=${apiKey}`
+        );
+        const itemData = response.data;
+        console.log(itemData.name, 'itemData');
+        setLoading(false);
+
+        // const item = itemData.find((item) => item.unique_id === parseInt(id));
+        setItem(itemData);
+      } catch (err) {
+        setError(err.response ? err.response.data : err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchItemDetails();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="absolute bg-slate-200/20 inset-0 backdrop-blur-sm flex justify-center items-center">
+        <span className="loader"></span>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
   }
 
   return (
@@ -32,17 +66,17 @@ export default function ItemDetails() {
 
       <div className="bg-[#EBEBEB] rounded-lg px-10 flex-1">
         <img
-          src={item.img}
+          src={`https://api.timbu.cloud/images/${item.photos[0].url}`}
           className="w-full h-auto max-h-[650px]"
-          alt={item.description}
+          alt="Product Image"
         />
       </div>
 
       <div className="text-[#183864] w-full pt-8 lg:pl-10 lg:pr-16 md:flex-1">
         <div className="flex gap-x-10 items-start">
           <div className="w-[55%] md:w-auto">
-            <p className="text-[24px]">{item.description}</p>
-            <p className="font-semibold">${item.price}</p>
+            <p className="text-[24px]">{item.name}</p>
+            {/* <p className="font-semibold">${item.price}</p> */}
           </div>
           <div className="md:hidden">
             <p className="">Color</p>

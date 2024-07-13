@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import heart from '../assets/heart.svg';
 
-function Collection({ title, items }) {
+function Collection({ items, title }) {
   return (
     <div className="px-[20px] md:px-[50px] py-10">
       <div className="flex justify-between items-center mb-6">
@@ -17,10 +17,10 @@ function Collection({ title, items }) {
       </div>
       <div className="grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4 md:gap-7">
         {items.map((item) => (
-          <div key={item.id}>
+          <div key={item.unique_id}>
             <div className="h-[180px] md:h-[350px] bg-[#EBEBEB] rounded-lg relative">
               <img
-                src={item.img}
+                src={`https://api.timbu.cloud/images/${item.photos[0].url}`}
                 alt=""
                 className="h-full w-full object-contain md:object-cover"
               />
@@ -33,8 +33,8 @@ function Collection({ title, items }) {
               </Link>
             </div>
             <div className="text-[#183864] pt-4">
-              <p className="md:text-[18px]">{item.description}</p>
-              <p className="text-[14px] md:text-[16px]">{item.color}</p>
+              <p className="md:text-[18px]">{item.name}</p>
+              <p className="text-[14px] md:text-[16px]">{item.description}</p>
               <p className="text-[14px] md:text-[16px] font-semibold">
                 ${item.price}
               </p>

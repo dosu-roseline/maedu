@@ -11,14 +11,14 @@ function StoreList() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 8;
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          `https://timbu-get-all-products.reavdev.workers.dev/?organization_id=${orgzId}&reverse_sort=false&size=16&Appid=${apiId}&Apikey=${apiKey}`
+          `https://timbu-get-all-products.reavdev.workers.dev/?organization_id=${orgzId}&reverse_sort=false&Appid=${apiId}&Apikey=${apiKey}`
         );
         const products = response.data.items;
         setProducts(products);
@@ -42,6 +42,8 @@ function StoreList() {
     startIndex + itemsPerPage
   );
   const totalPages = Math.ceil(products.length / itemsPerPage);
+
+  console.log(products);
 
   if (loading) {
     return (
@@ -95,7 +97,7 @@ function StoreList() {
           disabled={currentPage === 1}
           className="px-4 py-2 mx-1 bg-gray-300 rounded-md"
         >
-          Previous
+          «
         </button>
         {[...Array(totalPages)].map((_, index) => (
           <button
@@ -115,7 +117,7 @@ function StoreList() {
           disabled={currentPage === totalPages}
           className="px-4 py-2 mx-1 bg-gray-300 rounded-md"
         >
-          Next
+          »
         </button>
       </div>
     </div>

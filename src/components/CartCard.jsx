@@ -1,7 +1,16 @@
 import tick from '../assets/tick.svg';
 import close from '../assets/close.svg';
+import { useState } from 'react';
 
-function CartCard({ item, bg, removeFromCart }) {
+function CartCard({ item, bg, removeFromCart, updateItemQuantity }) {
+  const [quantity, setQuantity] = useState(item.quantity || 1);
+
+  const handleQuantityChange = (e) => {
+    const newQuantity = parseInt(e.target.value);
+    setQuantity(newQuantity);
+    updateItemQuantity(item.id, newQuantity);
+  };
+
   let color = '';
   let amount = '';
 
@@ -14,6 +23,7 @@ function CartCard({ item, bg, removeFromCart }) {
       console.error('Error parsing description JSON', err);
     }
   }
+
   return (
     <div className="flex justify-between py-10 items-start gap-2">
       <div className="flex items-start h-[180px] md:h-[235px] w-full">
@@ -38,26 +48,22 @@ function CartCard({ item, bg, removeFromCart }) {
                   {item.selectedSize}
                 </span>
               </p>
-              <h1 className="text-[12px] md:text-[20px]">${amount}</h1>
+              <h1 className="text-[12px] md:text-[20px]">
+                ${(amount * quantity).toFixed(2)}
+              </h1>
             </div>
             <div className="border-[0.9px] border-[#B5B3B3] py-0.5 px-1.5 md:px-5 md:py-2">
               <select
-                name="cars"
-                id="cars"
+                name="quantity"
+                id="quantity"
                 className="text-[12px] md:text-[20px] outline-none"
+                value={quantity}
+                onChange={handleQuantityChange}
               >
-                <option value="1" className="">
-                  1
-                </option>
-                <option value="2" className="">
-                  2
-                </option>
-                <option value="3" className="">
-                  3
-                </option>
-                <option value="4" className="">
-                  4
-                </option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
               </select>
             </div>
           </div>

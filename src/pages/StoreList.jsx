@@ -12,7 +12,7 @@ function StoreList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
+  const itemsPerPage = 12;
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -42,8 +42,6 @@ function StoreList() {
     startIndex + itemsPerPage
   );
   const totalPages = Math.ceil(products.length / itemsPerPage);
-
-  console.log(selectedProducts);
 
   if (loading) {
     return (

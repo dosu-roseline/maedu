@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import shopLine from '../assets/shopLine.svg';
 
 function Checkout() {
-  const { cart, emptyCart } = useContext(CartContext);
+  const { cart, emptyCart, updateCartItem } = useContext(CartContext);
   const [formData, setFormData] = useState({
     email: '',
     cardNumber: '',
@@ -18,20 +18,19 @@ function Checkout() {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-  if (cart.length === 0) {
-    return (
-      <div className="py-10 px-[20px] md:px-[50px]">
-        <h2 className="text-[24px] text-center font-semibold">
-          You have nothing to checkout
-        </h2>
-        <Link to="/store">
-          <span className="text-[#712F79] flex justify-center mt-5 items-center gap-1">
-            Start Shopping <img src={shopLine} alt="" />
-          </span>
-        </Link>
-      </div>
-    );
-  }
+  // Calculate subtotal, shipping, tax, and total
+  const calculateSubtotal = () => {
+    return cart.reduce((acc, item) => {
+      const description = JSON.parse(item.description);
+      const amount = parseFloat(description.amount);
+      return acc + amount * item.quantity;
+    }, 0);
+  };
+
+  const subtotal = calculateSubtotal();
+  const shippingEstimate = subtotal * 0.1;
+  const taxEstimate = subtotal * 0.02;
+  const orderTotal = subtotal + shippingEstimate + taxEstimate;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -63,6 +62,11 @@ function Checkout() {
     }
   };
 
+  // Update cart item quantity
+  const handleQuantityChange = (itemId, quantity) => {
+    updateCartItem(itemId, quantity);
+  };
+
   return (
     <div className="px-[20px] md:px-[50px] py-14">
       <h1 className="pb-5 text-[25px] md:text-[30px] text-center">Checkout</h1>
@@ -88,7 +92,6 @@ function Checkout() {
             />
             {errors.email && <p className="text-red-500">{errors.email}</p>}
           </div>
-
           <h1 className="pb-2 md:text-[18px] font-semibold">Payment details</h1>
           <div className="pb-5">
             <label htmlFor="cardNumber" className="form-label">
@@ -106,7 +109,6 @@ function Checkout() {
               <p className="text-red-500">{errors.cardNumber}</p>
             )}
           </div>
-
           <div className="grid grid-cols-3 gap-5 pb-5">
             <div className="col-span-2">
               <label htmlFor="expirationDate" className="form-label">
@@ -139,7 +141,6 @@ function Checkout() {
               {errors.cvc && <p className="text-red-500">{errors.cvc}</p>}
             </div>
           </div>
-
           <h1 className="pb-2 md:text-[18px] font-semibold">
             Shipping address
           </h1>
@@ -157,7 +158,6 @@ function Checkout() {
             />
             {errors.address && <p className="text-red-500">{errors.address}</p>}
           </div>
-
           <div className="grid grid-cols-3 gap-5 pb-5">
             <div>
               <label htmlFor="city" className="form-label">
@@ -173,7 +173,6 @@ function Checkout() {
               />
               {errors.city && <p className="text-red-500">{errors.city}</p>}
             </div>
-
             <div>
               <label htmlFor="state" className="form-label">
                 State/Province
@@ -188,7 +187,6 @@ function Checkout() {
               />
               {errors.state && <p className="text-red-500">{errors.state}</p>}
             </div>
-
             <div>
               <label htmlFor="postalCode" className="form-label">
                 Postal code
@@ -206,7 +204,6 @@ function Checkout() {
               )}
             </div>
           </div>
-
           <h1 className="pb-2 md:text-[18px] font-semibold">
             Billing information
           </h1>
@@ -221,7 +218,6 @@ function Checkout() {
               Same as shipping address
             </label>
           </div>
-
           <div className="flex mt-8 justify-between md:justify-normal items-center gap-2 md:gap-10">
             <button
               type="submit"
@@ -229,7 +225,6 @@ function Checkout() {
             >
               Pay Now
             </button>
-
             <p className="flex items-center gap-2 font-semibold justify-center">
               Or
               <Link to="/store">
@@ -243,7 +238,9 @@ function Checkout() {
         </form>
         <div className="w-full md:w-[50%] bg-[#712F79] rounded-[8px] px-10 py-10 text-white">
           <h1 className="pb-2 md:text-[18px] font-semibold">Amount due</h1>
-          <h1 className="pb-2 md:text-[25px] font-semibold">$328</h1>
+          <h1 className="pb-2 md:text-[25px] font-semibold">
+            ${orderTotal.toFixed(2)}
+          </h1>
           <div className="divide-y divide-[#CCCBCB]">
             {cart.map((item, i) => {
               let color = '';
@@ -271,7 +268,9 @@ function Checkout() {
                   <div className="w-full px-4 space-y-3">
                     <div className="flex justify-between">
                       <p className="font-semibold">{item.name}</p>
-                      <p className="font-semibold">${amount}</p>
+                      <p className="font-semibold">
+                        ${(amount * item.quantity).toFixed(2)}
+                      </p>
                     </div>
                     <p className="">
                       {color}{' '}
@@ -279,7 +278,9 @@ function Checkout() {
                         {item.selectedSize}
                       </span>
                     </p>
-                    <p className="font-semibold">${amount}</p>
+                    <p className="font-semibold">
+                      ${(amount * item.quantity).toFixed(2)}
+                    </p>
                   </div>
                 </div>
               );
@@ -288,21 +289,21 @@ function Checkout() {
             <div className="space-y-3 py-5">
               <div className="flex items-center justify-between">
                 <p className="">Subtotal</p>
-                <p className="font-semibold">$328</p>
+                <p className="font-semibold">${subtotal.toFixed(2)}</p>
               </div>
               <div className="flex items-center justify-between">
                 <p className="">Shipping</p>
-                <p className="font-semibold">$25</p>
+                <p className="font-semibold">${shippingEstimate.toFixed(2)}</p>
               </div>
               <div className="flex items-center justify-between">
                 <p className="">Taxes</p>
-                <p className="font-semibold">$38</p>
+                <p className="font-semibold">${taxEstimate.toFixed(2)}</p>
               </div>
             </div>
 
             <div className="flex items-center justify-between pt-5">
               <p className="">Total</p>
-              <p className="font-semibold">$391</p>
+              <p className="font-semibold">${orderTotal.toFixed(2)}</p>
             </div>
           </div>
         </div>

@@ -27,13 +27,10 @@ export default function ItemDetails() {
       try {
         const response = await axios.get(
           `https://timbu-get-single-product.reavdev.workers.dev/${id}?organization_id=${orgzId}&Appid=${apiId}&Apikey=${apiKey}`
-          // `api/products/${id}?organization_id=${orgzId}&Appid=${apiId}&Apikey=${apiKey}`
         );
         const itemData = response.data;
-        console.log(itemData.name, 'itemData');
         setLoading(false);
 
-        // const item = itemData.find((item) => item.unique_id === parseInt(id));
         setItem(itemData);
       } catch (err) {
         setError(err.response ? err.response.data : err.message);
@@ -50,7 +47,7 @@ export default function ItemDetails() {
     navigate('/store/cart');
   };
 
-  let color = '';
+  // let color = '';
   let amount = '';
 
   if (item && item.description) {

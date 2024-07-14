@@ -5,6 +5,17 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
+  // Function to update quantity of an item in the cart
+  const updateItemQuantity = (itemId, newQuantity) => {
+    const updatedCart = cart.map((item) => {
+      if (item.id === itemId) {
+        return { ...item, quantity: newQuantity };
+      }
+      return item;
+    });
+    setCart(updatedCart);
+  };
+
   const addToCart = (item) => {
     setCart((prevCart) => [...prevCart, item]);
   };
@@ -19,7 +30,7 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, emptyCart }}
+      value={{ cart, addToCart, removeFromCart, emptyCart, updateItemQuantity }}
     >
       {children}
     </CartContext.Provider>

@@ -3,13 +3,10 @@ import { CartContext } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 import checkout from '../assets/checkout.svg';
 import shopLine from '../assets/shopLine.svg';
-import cart1 from '../assets/ts1.png';
-import cart2 from '../assets/ts4.png';
-import cart3 from '../assets/pr6.png';
 import CartCard from '../components/CartCard';
 
 function Cart() {
-  const { cart, removeFromCart } = useContext(CartContext);
+  const { cart, removeFromCart, updateItemQuantity } = useContext(CartContext);
 
   if (cart.length === 0) {
     return (
@@ -25,6 +22,21 @@ function Cart() {
       </div>
     );
   }
+
+  const calculateSubtotal = () => {
+    return cart.reduce((acc, item) => {
+      const description = JSON.parse(item.description);
+      const amount = parseFloat(description.amount);
+      const quantity = item.quantity || 1;
+      return acc + amount * quantity;
+    }, 0);
+  };
+
+  const subtotal = calculateSubtotal();
+  const shippingEstimate = subtotal * 0.1;
+  const taxEstimate = subtotal * 0.02;
+  const orderTotal = subtotal + shippingEstimate + taxEstimate;
+
   return (
     <div className="px-[20px] md:px-[50px] py-10">
       <h1 className="pb-5 text-[25px] md:text-[30px] text-center">
@@ -32,11 +44,12 @@ function Cart() {
       </h1>
       <div className="flex flex-col md:flex-row items-start gap-10 md:gap-20">
         <div className="divide-y divide-[#CCCBCB] md:border-y border-[#CCCBCB] md:w-[55%]">
-          {cart.map((cart, i) => (
+          {cart.map((cartItem, i) => (
             <CartCard
               key={i}
-              item={cart}
+              item={cartItem}
               removeFromCart={removeFromCart}
+              updateItemQuantity={updateItemQuantity}
               bg="bg-[#EBEBEB]"
             />
           ))}
@@ -46,19 +59,19 @@ function Cart() {
           <div className=" divide-y divide-[#CCCBCB] flex flex-col space-y-5">
             <div className="flex items-center justify-between pt-5">
               <p className="">Subtotal</p>
-              <p className="font-semibold">$315</p>
+              <p className="font-semibold">${subtotal.toFixed(2)}</p>
             </div>
             <div className="flex items-center justify-between pt-5">
               <p className="">Shipping estimate</p>
-              <p className="font-semibold">$5</p>
+              <p className="font-semibold">${shippingEstimate.toFixed(2)}</p>
             </div>
             <div className="flex items-center justify-between pt-5">
               <p className="">Tax Estimate</p>
-              <p className="font-semibold">$8</p>
+              <p className="font-semibold">${taxEstimate.toFixed(2)}</p>
             </div>
             <div className="flex items-center justify-between pt-5">
               <p className="font-semibold">Order Total</p>
-              <p className="font-semibold">$328</p>
+              <p className="font-semibold">${orderTotal.toFixed(2)}</p>
             </div>
           </div>
           <div className="">
@@ -83,23 +96,5 @@ function Cart() {
     </div>
   );
 }
-
-const data = [
-  {
-    item: cart1,
-    label: 'Brown Leather Shirt',
-    color: 'Gray',
-    size: 'M',
-    price: '75',
-  },
-  { item: cart2, label: 'Fiesta Jean', color: 'Blue', size: 'M', price: '120' },
-  {
-    item: cart3,
-    label: 'Limpopo Vintage',
-    color: 'Combo',
-    size: 'L',
-    price: '75',
-  },
-];
 
 export default Cart;

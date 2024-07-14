@@ -20,6 +20,7 @@ function Store() {
           `https://timbu-get-all-products.reavdev.workers.dev/?organization_id=${orgzId}&reverse_sort=false&Appid=${apiId}&Apikey=${apiKey}`
         );
         const products = response.data.items;
+        console.log(products);
 
         const categorizedProducts = [
           {

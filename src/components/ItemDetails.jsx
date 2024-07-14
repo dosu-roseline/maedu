@@ -50,6 +50,19 @@ export default function ItemDetails() {
     navigate('/store/cart');
   };
 
+  let color = '';
+  let amount = '';
+
+  if (item && item.description) {
+    try {
+      const descriptionObj = JSON.parse(item.description);
+      // color = descriptionObj.color;
+      amount = descriptionObj.amount;
+    } catch (err) {
+      console.error('Error parsing description JSON', err);
+    }
+  }
+
   if (loading) {
     return (
       <div className="absolute bg-slate-200/20 inset-0 backdrop-blur-sm flex justify-center items-center">
@@ -83,7 +96,7 @@ export default function ItemDetails() {
         <div className="flex gap-x-10 items-start">
           <div className="w-[55%] md:w-auto">
             <p className="text-[24px]">{item.name}</p>
-            {/* <p className="font-semibold">${item.price}</p> */}
+            <p className="font-semibold">${amount}</p>
           </div>
           <div className="md:hidden">
             <p className="">Color</p>

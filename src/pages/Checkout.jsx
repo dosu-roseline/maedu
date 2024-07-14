@@ -245,29 +245,45 @@ function Checkout() {
           <h1 className="pb-2 md:text-[18px] font-semibold">Amount due</h1>
           <h1 className="pb-2 md:text-[25px] font-semibold">$328</h1>
           <div className="divide-y divide-[#CCCBCB]">
-            {cart.map((item, i) => (
-              <div className="w-full flex py-5" key={i}>
-                <div className="bg-[#7C3D84] w-[40%] rounded-[8px] shadow-sm">
-                  <img
-                    src={`https://api.timbu.cloud/images/${item.photos[0].url}`}
-                    alt={item.name}
-                    className="w-full"
-                  />
-                </div>
-                <div className="w-full px-4">
-                  <div className="flex justify-between">
-                    <p className="font-semibold">{item.name}</p>
-                    <p className="font-semibold">$315</p>
+            {cart.map((item, i) => {
+              let color = '';
+              let amount = '';
+
+              if (item && item.description) {
+                try {
+                  const descriptionObj = JSON.parse(item.description);
+                  color = descriptionObj.color;
+                  amount = descriptionObj.amount;
+                } catch (err) {
+                  console.error('Error parsing description JSON', err);
+                }
+              }
+
+              return (
+                <div className="w-full flex py-5" key={i}>
+                  <div className="bg-[#7C3D84] w-[40%] rounded-[8px] shadow-sm">
+                    <img
+                      src={`https://api.timbu.cloud/images/${item.photos[0].url}`}
+                      alt={item.name}
+                      className="w-full"
+                    />
                   </div>
-                  <p className="">
-                    {item.description}{' '}
-                    <span className="font-semibold border-l-2 pl-2 border-[#7C3D84]">
-                      {item.selectedSize}
-                    </span>
-                  </p>
+                  <div className="w-full px-4 space-y-3">
+                    <div className="flex justify-between">
+                      <p className="font-semibold">{item.name}</p>
+                      <p className="font-semibold">${amount}</p>
+                    </div>
+                    <p className="">
+                      {color}{' '}
+                      <span className="font-semibold border-l-2 pl-2 border-[#7C3D84]">
+                        {item.selectedSize}
+                      </span>
+                    </p>
+                    <p className="font-semibold">${amount}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
 
             <div className="space-y-3 py-5">
               <div className="flex items-center justify-between">

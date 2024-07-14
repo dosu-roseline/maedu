@@ -64,31 +64,46 @@ function StoreList() {
       </h2>
 
       <div className="grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4 md:gap-7">
-        {selectedProducts.map((item) => (
-          <div key={item.id}>
-            <div className="h-[180px] sm:h-[270px] md:h-[350px] bg-[#EBEBEB] rounded-lg relative">
-              <img
-                src={`https://api.timbu.cloud/images/${item.photos[0].url}`}
-                alt=""
-                className="h-full w-full object-contain md:object-cover"
-              />
-              <Link to={`/store/products/${item.id}`} className="">
+        {selectedProducts.map((item) => {
+          let color = '';
+          let amount = '';
+
+          if (item && item.description) {
+            try {
+              const descriptionObj = JSON.parse(item.description);
+              color = descriptionObj.color;
+              amount = descriptionObj.amount;
+            } catch (err) {
+              console.error('Error parsing description JSON', err);
+            }
+          }
+
+          return (
+            <div key={item.id}>
+              <div className="h-[180px] sm:h-[270px] md:h-[350px] bg-[#EBEBEB] rounded-lg relative">
                 <img
-                  src={heart}
+                  src={`https://api.timbu.cloud/images/${item.photos[0].url}`}
                   alt=""
-                  className="h-7 md:h-auto absolute top-2 right-2"
+                  className="h-full w-full object-contain md:object-cover"
                 />
-              </Link>
+                <Link to={`/store/products/${item.id}`} className="">
+                  <img
+                    src={heart}
+                    alt=""
+                    className="h-7 md:h-auto absolute top-2 right-2"
+                  />
+                </Link>
+              </div>
+              <div className="text-[#183864] pt-4">
+                <p className="md:text-[18px]">{item.name}</p>
+                <p className="text-[14px] md:text-[16px]">{color}</p>
+                <p className="text-[14px] md:text-[16px] font-semibold">
+                  ${amount}
+                </p>
+              </div>
             </div>
-            <div className="text-[#183864] pt-4">
-              <p className="md:text-[18px]">{item.name}</p>
-              <p className="text-[14px] md:text-[16px]">{item.description}</p>
-              <p className="text-[14px] md:text-[16px] font-semibold">
-                {/* ${item.price} */}
-              </p>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className="flex justify-center mt-16">
